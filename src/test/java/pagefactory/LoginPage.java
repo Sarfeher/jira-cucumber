@@ -34,6 +34,7 @@ public class LoginPage extends BasePage {
     }
 
     public void enterUserCredentials(String userName, String password){
+        wait.until(ExpectedConditions.visibilityOf(usernameField));
         usernameField.sendKeys(userName);
         passwordField.sendKeys(password);
     }

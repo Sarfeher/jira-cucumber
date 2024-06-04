@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -31,6 +32,7 @@ public class LoginStepDef {
 
     @Then("the user profile picture is displayed")
     public void theUserProfilePictureIsDisplayed() {
+        //Assertions.assertTrue(loginPage.areWeLoggedIn()); ez jobb esetleg?
         loginPage.areWeLoggedIn();
     }
 
@@ -41,10 +43,11 @@ public class LoginStepDef {
 
     @Then("the error massage is displayed")
     public void theErrorMassageIsDisplayed() {
+        //Assertions.assertTrue(loginPage.isErrorDisplayed()); ez jobb esetleg?
         loginPage.isErrorDisplayed();
     }
 
-    @After
+    @AfterEach
     public void quitWebdriver()
     {
         webDriver.quit();
