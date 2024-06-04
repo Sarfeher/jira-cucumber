@@ -40,13 +40,14 @@ public class LoginPage extends BasePage {
 
     public void clickLoginButton(){
         loginButton.click();
-        wait.until(ExpectedConditions.visibilityOf(profilePicture));
     }
 
     public boolean areWeLoggedIn(){
+        wait.until(ExpectedConditions.visibilityOf(profilePicture));
         return profilePicture.isDisplayed();
     }
     public boolean isErrorDisplayed(){
+        wait.until(ExpectedConditions.visibilityOf(errorMassage));
         return errorMassage.isDisplayed();
     }
 

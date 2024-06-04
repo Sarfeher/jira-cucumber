@@ -1,5 +1,6 @@
 package jira_cucumber;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,6 +13,7 @@ import pagefactory.LoginPage;
 public class LoginStepDef {
     WebDriver webDriver = WebDriverProvider.setupWebDriver();
     LoginPage loginPage = new LoginPage(webDriver);
+
     @Given("the user is on the login page")
     public void theUserIsOnTheLoginPage() {
         loginPage.navigateToLoginPage();
@@ -32,9 +34,9 @@ public class LoginStepDef {
         loginPage.areWeLoggedIn();
     }
 
-    @When("the user enters a invalid username and password")
-    public void theUserEntersAInvalidUsernameAndPassword() {
-        loginPage.enterUserCredentials("locked_out_user", "secret_sauce");
+    @When("the user enters a invalid {string} and {string}")
+    public void theUserEntersAInvalidUsernameAndPassword(String username, String password) {
+        loginPage.enterUserCredentials(username, password);
     }
 
     @Then("the error massage is displayed")
@@ -42,10 +44,10 @@ public class LoginStepDef {
         loginPage.isErrorDisplayed();
     }
 
-   /* @When("the user enters a valid {string} and {string}")
-    public void theUserEntersAValidAnd(String username, String password) {
-        loginPage.enterUserCredentials(username, password);
-    }*/
-
+    @After
+    public void quitWebdriver()
+    {
+        webDriver.quit();
+    }
 
 }
